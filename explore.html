@@ -108,8 +108,8 @@
       <source src="wrong.mp3" type="audio/mpeg">
     </audio>
   </div>
-  <audio id="appy2" src="assets/appy2.m4a"></audio>
-  <audio id="main-audio" src="main-message.mp3"></audio>
+  <audio id="appy-greeting" src="assets/exploreappy.m4a"></audio>
+  <audio id="what-is-app" src="assets/application software.ogg"></audio>
 
 <style>
   .flip-card-container {
@@ -201,25 +201,36 @@
   }
 </style>
 
-<audio id="appy-greeting" src="assets/exploreappy.m4a"></audio>
-
 <script>
   const appyGreeting = document.getElementById('appy-greeting');
+  const whatIsApp = document.getElementById('what-is-app');
   const playSoundsBtn = document.getElementById('play-sounds-btn');
 
-  // Try to autoplay Appy's greeting on page load
-  window.addEventListener('DOMContentLoaded', () => {
+  // Play Appy greeting, then What is Application Software audio
+  function playGreetingChain() {
     if (appyGreeting) {
-      appyGreeting.play().catch(() => {
-        // Autoplay failed, user must click Play Site Sounds button
-      });
+      appyGreeting.currentTime = 0;
+      appyGreeting.play().catch(() => {});
     }
+  }
+
+  // When Appy greeting ends, play the next audio
+  if (appyGreeting && whatIsApp) {
+    appyGreeting.addEventListener('ended', () => {
+      whatIsApp.currentTime = 0;
+      whatIsApp.play().catch(() => {});
+    });
+  }
+
+  // Try to autoplay on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    playGreetingChain();
   });
 
-  // Use the Play Site Sounds image button as fallback
-  if (playSoundsBtn && appyGreeting) {
+  // Fallback: Play Site Sounds image button
+  if (playSoundsBtn) {
     playSoundsBtn.addEventListener('click', () => {
-      appyGreeting.play();
+      playGreetingChain();
     });
   }
 
@@ -264,3 +275,4 @@
 </script>
 </body>
 </html>
+``` 

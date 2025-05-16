@@ -79,18 +79,18 @@
   </div>
 
   <audio id="appy1" src="assets/appy1.m4a"></audio>
-  <audio id="main-audio" src="main-message.mp3"></audio>
+  <audio id="main-audio" src="assets/orientation comple.ogg"></audio>
 
   <script>
     window.addEventListener('DOMContentLoaded', () => {
     const audio1 = document.getElementById('appy1');
-    const audio2 = document.getElementById('audio2');
+    const audio2 = document.getElementById('main-audio');
 
     // Try autoplay for audio1
     appy1.play().then(() => {
       appy1.addEventListener('ended', () => {
         // Play audio2 when audio1 ends
-        audio2.play().catch((err) => {
+        main-audio.play().catch((err) => {
           console.error("Audio2 failed to play:", err);
         });
       });
