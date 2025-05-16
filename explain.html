@@ -1,0 +1,137 @@
+<div style="display: flex; flex-direction: column; align-items: center; background-color: #f5f3f7; padding: 20px; font-family: 'Comic Sans MS', cursive, sans-serif;">
+  <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+    <img src="assets/pay sound.png" alt="Play Site Sounds" style="height: 60px; cursor: pointer;" onclick="document.getElementById('appy-greeting').play()">
+    <div>
+      <a href="resources.html">
+      <img src="assets/resources.png" alt="Resources" style="height: 60px; margin-right: 10px; cursor: pointer;">
+      </a>
+      <a href="evaluate.html">
+      <img src="assets/quiz.png" alt="Quiz Zone" style="height: 60px; cursor: pointer;">
+      </a>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; width: 100%; margin-top: 40px;">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <img src="assets/waving robot.gif" alt="Appy the Robot" style="height: 100px;">
+      <p style="text-align: center; max-width: 200px;">Now let's take a closer look at how application software works in our everyday lives!</p>
+      <h2>Let’s Watch & Reflect!</h2>
+      <!-- Replace YouTube with downloaded video -->
+      <video id="lesson-video" width="360" height="215" controls style="background: #222;">
+        <source src="assets/video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div>
+      <h3>What did you learn?</h3>
+      <p>Take a moment to reflect on the video you just watched. Share your thoughts below:</p>
+      <label>1. What is one thing you learned about application software?</label>
+      <textarea style="width: 100%; height: 60px; border-radius: 10px; padding: 10px; margin-bottom: 15px;"></textarea>
+
+      <label>2. How do you use application software in your daily life?</label>
+      <textarea style="width: 100%; height: 60px; border-radius: 10px; padding: 10px; margin-bottom: 15px;"></textarea>
+
+      <label>3. Which type of application software do you think is most important? Why?</label>
+      <textarea style="width: 100%; height: 60px; border-radius: 10px; padding: 10px; margin-bottom: 15px;"></textarea>
+
+      <button onclick="submitThoughts()" style="margin-top: 10px; padding: 12px 24px; font-size: 16px; background-color: #1b6a7e; color: white; border: none; border-radius: 12px; cursor: pointer;">Submit My Thoughts</button>
+
+      <div id="thank-you-message" style="display: none; margin-top: 20px; color: green; font-weight: bold;">Thanks for sharing your thoughts!</div>
+
+      <button id="next-button" style="display: none; margin-top: 20px; padding: 10px 20px; font-size: 18px; background-color: #4CAF50; color: white; border: none; border-radius: 10px; cursor: pointer;">Next</button>
+    </div>
+  </div>
+
+  <!-- Audio elements for the sequence -->
+  <audio id="appy-greeting" src="assets/explainappy.m4a"></audio>
+  <audio id="instructions-audio" src="assets/instructions.m4a"></audio>
+  <audio id="site-audio">
+    <source src="site-sounds.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+ <style>
+  .flip-card {
+    background-color: #00849f;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 16px;
+    width: 140px;
+    height: 90px;
+    cursor: pointer;
+    text-transform: capitalize;
+  }
+
+  .quiz-option {
+    background: linear-gradient(to bottom, #5b94a6, #1b6a7e);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    padding: 15px 25px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .quiz-option.correct {
+    background-color: green !important;
+  }
+
+  .quiz-option.wrong {
+    background-color: red !important;
+  }
+</style>
+
+<script>
+  function submitThoughts() {
+    document.getElementById('thank-you-message').style.display = 'block';
+    document.getElementById('next-button').style.display = 'block'; // Show Next button after submit
+    document.getElementById('next-button').onclick = function() {
+      window.location.href = 'elaborate.html';
+    };
+  }
+
+  // --- Audio/Video Chain Logic ---
+  const appyGreeting = document.getElementById('appy-greeting');
+  const lessonVideo = document.getElementById('lesson-video');
+  const instructionsAudio = document.getElementById('instructions-audio');
+  const playSoundsBtn = document.getElementById('play-sounds-btn');
+
+  // Helper to start the chain: Appy greeting -> video -> instructions
+  function startChain() {
+    if (appyGreeting) {
+      appyGreeting.currentTime = 0;
+      appyGreeting.play().catch(() => {});
+    }
+  }
+
+  // When Appy greeting ends, play the video
+  if (appyGreeting && lessonVideo) {
+    appyGreeting.addEventListener('ended', () => {
+      lessonVideo.currentTime = 0;
+      lessonVideo.play().catch(() => {});
+    });
+  }
+
+  // When video ends, play instructions audio
+  if (lessonVideo && instructionsAudio) {
+    lessonVideo.addEventListener('ended', () => {
+      instructionsAudio.currentTime = 0;
+      instructionsAudio.play().catch(() => {});
+    });
+  }
+
+  // Try to autoplay Appy's greeting on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    startChain();
+  });
+
+  // Fallback: Play Site Sounds image triggers the chain
+  if (playSoundsBtn) {
+    playSoundsBtn.addEventListener('click', () => {
+      startChain();
+    });
+  }
+</script>

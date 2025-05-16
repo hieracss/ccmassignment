@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application Software Intro</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <img src="assets/speech-bubble.png" alt="Speech bubble" class="bubble-img">
+    <a href="teacher.html" class="teacher-link">
+      <img src="assets/next.png" alt="Next button" class="next-button">
+    </a>
+  </div>
+
+  <!-- Audio element with autoplay attribute -->
+  <audio id="audio1" src="assets/home audio.m4a" autoplay></audio>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const audio1 = document.getElementById('audio1');
+
+      audio1.play().catch(() => {
+        // Create fallback button if autoplay fails
+        const button = document.createElement('button');
+        button.textContent = "Play Audio";
+        button.style.position = "absolute";
+        button.style.top = "20px";
+        button.style.left = "20px";
+        button.style.padding = "10px 20px";
+        button.style.fontSize = "16px";
+        button.style.borderRadius = "8px";
+        button.style.border = "none";
+        button.style.backgroundColor = "#4caf50";
+        button.style.color = "white";
+        button.style.cursor = "pointer";
+        button.onclick = () => {
+          audio1.play();
+          button.remove(); // remove button once clicked
+        };
+        document.body.appendChild(button);
+      });
+    });
+  </script>
+</body>
+</html>

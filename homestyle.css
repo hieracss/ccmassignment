@@ -1,0 +1,75 @@
+body.homepage {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+header {
+  padding: 30px 20px 10px;
+  background-color: #dcdcdc;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.avatar-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.avatar {
+  width: 100px;
+  height: auto;
+}
+
+.speech {
+  background-color: #fff5c4;
+  border-radius: 10px;
+  padding: 15px 20px;
+  border: 2px dashed #444;
+  max-width: 300px;
+  font-size: 1em;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 15px;
+  background-color: #333;
+}
+
+.nav-bar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 15px;
+  background-color: #555;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.nav-bar a:hover {
+  background-color: #888;
+}
+
+.start-btn {
+  display: inline-block;
+  margin-top: 40px;
+  padding: 15px 25px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 1.2em;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+.start-btn:hover {
+  background-color: #45a049;
+}

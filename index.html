@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | Application Software</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="login-container">
+    <img src="assets/robot.png" alt="Robot" class="corner-icon top-left" />
+    <img src="assets/wifi.png" alt="WiFi" class="corner-icon top-right" />
+    <img src="assets/gears.png" alt="Gears" class="corner-icon bottom-left" />
+    <img src="assets/android.png" alt="Android" class="corner-icon bottom-right" />
+
+    <div class="login-box">
+      <h1>Login</h1>
+      <form onsubmit="return validateLogin();">
+        <input type="email" id="email" placeholder="email address" required />
+        <input type="password" id="password" placeholder="password" required />
+        <button type="submit">Enter</button>
+        <p id="error-message" style="color: red;"></p>
+      </form>
+      
+      <script src="script.js"></script>
+      
+    </div>
+  </div>
+</body>
+</html>

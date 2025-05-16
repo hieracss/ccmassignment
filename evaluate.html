@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application Software Evaluation</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #f5f3f7;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .tab-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .tab-buttons button {
+      padding: 10px 20px;
+      font-weight: bold;
+      border: none;
+      background-color: #1b6a7e;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .section {
+      display: none;
+      width: 100%;
+      max-width: 800px;
+    }
+    .active {
+      display: block;
+    }
+    .question {
+      margin-bottom: 15px;
+    }
+    .question input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 8px;
+    }
+    .submit-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+    #result {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 30px;
+    }
+
+    body {
+      margin: 0;
+      background-color: #f5f3f7;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .quiz-option {
+      background: linear-gradient(to bottom, #5b94a6, #1b6a7e);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    .quiz-option.correct {
+      background-color: green !important;
+    }
+
+    .quiz-option.wrong {
+      background-color: red !important;
+    }
+
+    textarea {
+      width: 100%;
+      height: 80px;
+      border-radius: 10px;
+      padding: 10px;
+    }
+ .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .top-nav .left,
+    .top-nav .right {
+      display: flex;
+      gap: 15px;
+    }
+    .top-nav img {
+      cursor: pointer;
+      width: 130px;
+    }
+.quiz-container {
+      display: flex;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .column {
+      flex: 1;
+      padding: 30px;
+    }
+    .column.left {
+      text-align: left;
+    }
+    .column.left img {
+      width: 200px;
+      margin: 0 auto;
+    }
+    #next-button {
+      display: none;
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    h2, h3 {
+      text-align: center;
+    }
+  </style>
+  </style>
+</head>
+<body>
+  <div class="top-nav">
+    <div class="left">
+      <img src="assets/pay sound.png" id="play-sounds-btn" alt="Play Site Sounds">
+    </div>
+    <div class="right">
+      <img src="assets/start.png" alt="Start Learning" onclick="location.href='engage.html'" />
+      <a href="resources.html">
+      <img src="assets/resources.png" alt="Resources">
+      </a>
+    </div>
+  </div>
+
+  <h1>Evaluate: Application Software</h1>
+  <p> complete all three sections and click submit when all is finished. Each question is worth 1 mark</p>
+  <p>Click on the buttons below to switch between different types of questions.</p>
+  
+  <div class="tab-buttons">
+    <button onclick="showSection('multiple')">Multiple Choice</button>
+    <button onclick="showSection('fill')">Fill in the Blanks</button>
+    <button onclick="showSection('drag')">Drag & Drop</button>
+  </div>
+
+  <div id="multiple" class="section active">
+    <div class="question">
+      <p>1. Which of these is an example of application software?</p>
+      <input type="radio" name="q1" value="0"> BIOS<br>
+      <input type="radio" name="q1" value="1"> Microsoft Word<br>
+      <input type="radio" name="q1" value="0"> Device Driver
+    </div>
+    <div class="question">
+      <p>2. What is the main purpose of application software?</p>
+      <input type="radio" name="q2" value="1"> To perform specific tasks for users<br>
+      <input type="radio" name="q2" value="0"> To manage hardware only<br>
+      <input type="radio" name="q2" value="0"> To control system startup
+    </div>
+    <div class="question">
+      <p>3. Which category does Adobe Photoshop belong to?</p>
+      <input type="radio" name="q3" value="0"> Word Processing<br>
+      <input type="radio" name="q3" value="0"> Web Browser<br>
+      <input type="radio" name="q3" value="1"> Graphics and Multimedia<br>
+      <input type="radio" name="q3" value="0"> Spreadsheet<br>
+    </div>
+     <div class="question">
+      <p>4. Which of the following is NOT application software?</p>
+      <input type="radio" name="q4" value="0"> Google Chrome<br>
+      <input type="radio" name="q4" value="0"> Microsoft Excel<br>
+      <input type="radio" name="q4" value="1"> Android OS<br>
+      <input type="radio" name="q4" value="0"> Zoom<br>
+    </div>
+    <div class="question">
+      <p>5. What type of application software is used to create and edit text documents?</p>
+      <input type="radio" name="q5" value="0"> Spreadsheet<br>
+      <input type="radio" name="q5" value="1"> Word Processor<br>
+      <input type="radio" name="q5" value="0"> Web Browser<br>
+      <input type="radio" name="q5" value="0"> Database<br>
+    </div>
+    <div class="question">
+      <p>6. Which software is used to browse the internet?</p>
+      <input type="radio" name="q6" value="0"> MS Paint<br>
+      <input type="radio" name="q6" value="1"> Google Chrome<br>
+      <input type="radio" name="q6" value="0"> VLC Media Player<br>
+      <input type="radio" name="q6" value="0"> Notepad<br>
+    </div>
+  </div>
+
+  <div id="fill" class="section">
+    <div class="question">
+      <p>1. _______ software helps users perform tasks like word processing and browsing the web.</p>
+      <input type="text" id="fill1">
+    </div>
+    <div class="question">
+      <p>2. An example of application software used to create presentations is _______.</p>
+      <input type="text" id="fill2">
+    </div>
+    <div class="question">
+      <p>3. A spreadsheet application like Microsoft Excel is used for organizing data and performing __________.</p>
+      <input type="text" id="fill3">
+    </div>
+     <div class="question">
+      <p>4. __________ software is used to create, edit, and print documents.</p>
+      <input type="text" id="fill4">
+    </div>
+     <div class="question">
+      <p>5. Media players like VLC are used to play __________ and __________ files.</p>
+      <input type="text" id="fill5">
+    </div>
+     <div class="question">
+      <p>6. A __________ is a type of application software that allows users to access and view websites.</p>
+      <input type="text" id="fill6">
+    </div>
+  </div>
+
+  <div id="drag" class="section">
+    <p>Match the application software to the correct category:</p>
+    <div class="question">
+      <p>Microsoft Word → <select id="drag1">
+        <option value="">--Select--</option>
+        <option value="10">Word Processing</option>
+        <option value="0">Spreadsheet</option>
+        <option value="0">Web Browser</option>
+        <option value="0">Graphics and Multimedia</option>
+        <option value="0">Communication</option>
+        <option value="0">Database</option>
+      </select></p>
+    </div>
+   <div class="question">
+      <p>Microsoft Excel → <select id="drag2">
+        <option value="">--Select--</option>
+        <option value="0">Word Processing</option>
+        <option value="10">Spreadsheet</option>
+        <option value="0">Web Browser</option>
+        <option value="0">Graphics and Multimedia</option>
+        <option value="0">Communication</option>
+        <option value="0">Database</option>
+      </select></p>
+      <div class="question">
+      <p>Microsoft Access → <select id="drag3">
+        <option value="">--Select--</option>
+        <option value="0">Word Processing</option>
+        <option value="0">Spreadsheet</option>
+        <option value="0">Web Browser</option>
+        <option value="0">Graphics and Multimedia</option>
+        <option value="0">Communication</option>
+        <option value="10">Database</option>
+      </select></p>
+    </div>
+    <div class="question">
+      <p>Google Chrome → <select id="drag4">
+        <option value="">--Select--</option>
+        <option value="0">Word Processing</option>
+        <option value="0">Spreadsheet</option>
+        <option value="10">Web Browser</option>
+        <option value="0">Graphics and Multimedia</option>
+        <option value="0">Communication</option>
+        <option value="0">Database</option>
+      </select></p>
+  </div>
+  </div>
+  <div class="question">
+      <p>Adobe Photoshop → <select id="drag5">
+        <option value="">--Select--</option>
+        <option value="0">Word Processing</option>
+        <option value="0">Spreadsheet</option>
+        <option value="0">Web Browser</option>
+        <option value="10">Graphics and Multimedia</option>
+        <option value="0">Communication</option>
+        <option value="0">Database</option>
+      </select></p>
+    </div>
+  <div class="question">
+      <p>Microsoft PowerPoint → <select id="drag6">
+        <option value="">--Select--</option>
+        <option value="0">Word Processing</option>
+        <option value="0">Spreadsheet</option>
+        <option value="0">Web Browser</option>
+        <option value="10">Presentation</option>
+        <option value="0">Communication</option>
+        <option value="0">Database</option>
+      </select></p>
+    </div>
+  <div class="question">
+      <p>Skype → <select id="drag7">
+        <option value="">--Select--</option>
+        <option value="0">Word Processing</option>
+        <option value="0">Spreadsheet</option>
+        <option value="0">Web Browser</option>
+        <option value="0">Graphics and Multimedia</option>
+        <option value="10">Communication</option>
+        <option value="0">Database</option>
+      </select></p>
+    </div>
+  <div class="question">
+      <p>Adobe Illustrator → <select id="drag8">
+        <option value="">--Select--</option>
+        <option value="0">Word Processing</option>
+        <option value="0">Spreadsheet</option>
+        <option value="0">Web Browser</option>
+        <option value="10">Graphics and Multimedia</option>
+        <option value="0">Communication</option>
+        <option value="0">Database</option>
+      </select></p>
+    </div>
+  </div>
+  
+  <button class="submit-btn" onclick="submitQuiz()">Submit</button>
+  <div id="result"></div>
+
+  <audio id="instruction-audio" src="assets/evaluate.m4a"></audio>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function submitQuiz() {
+      let score = 0;
+
+      // Multiple Choice
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      const q2 = document.querySelector('input[name="q2"]:checked');
+      const q3 = document.querySelector('input[name="q3"]:checked');
+      const q4 = document.querySelector('input[name="q4"]:checked');
+      const q5 = document.querySelector('input[name="q5"]:checked');
+      const q6 = document.querySelector('input[name="q6"]:checked');
+      if (q1) score += parseInt(q1.value);
+      if (q2) score += parseInt(q2.value);
+      if (q3) score += parseInt(q3.value);
+      if (q4) score += parseInt(q4.value);
+      if (q5) score += parseInt(q5.value);
+      if (q6) score += parseInt(q6.value);
+
+
+      // Fill in the blanks
+      const fill1 = document.getElementById('fill1').value.trim().toLowerCase();
+      const fill2 = document.getElementById('fill2').value.trim().toLowerCase();
+      const fill3 = document.getElementById('fill3').value.trim().toLowerCase();
+      const fill4 = document.getElementById('fill4').value.trim().toLowerCase();
+      const fill5 = document.getElementById('fill5').value.trim().toLowerCase();
+      const fill6 = document.getElementById('fill6').value.trim().toLowerCase();
+
+      if (fill1 === 'application') score += 1;
+      if (fill2 === 'powerpoint' || fill2 === 'canva') score += 1;
+      if (fill3 === 'calculations' || fill3 === 'maths') score += 1;
+      if (fill4 === 'word' || fill4 === 'word processor') score += 1;
+      if (fill5 === 'audio, video' || fill5 === 'video, audio') score += 1;
+      if (fill6 === 'browser' || fill6 === 'web browser') score += 1;
+
+      // Drag and Drop (dropdown)
+      const drag1 = document.getElementById('drag1').value;
+      const drag2 = document.getElementById('drag2').value;
+      const drag3 = document.getElementById('drag3').value;
+      const drag4 = document.getElementById('drag4').value;
+      const drag5 = document.getElementById('drag5').value;
+      const drag6 = document.getElementById('drag6').value;
+      const drag7 = document.getElementById('drag7').value;
+      const drag8 = document.getElementById('drag8').value;
+
+      if (drag1 === "10") score += 1;
+      if (drag2 === "10") score += 1;
+      if (drag3 === "10") score += 1;
+      if (drag4 === "10") score += 1;
+      if (drag5 === "10") score += 1;
+      if (drag6 === "10") score += 1;
+      if (drag7 === "10") score += 1;
+      if (drag8 === "10") score += 1;
+
+      const percent = Math.round((score / 20) * 100);
+      document.getElementById('result').innerText = `You scored ${score}/20 (${percent}%)`;
+    }
+    // Show tick or cross beside each answer
+    function markAnswers() {
+      // Multiple Choice
+      for (let i = 1; i <= 6; i++) {
+      const radios = document.querySelectorAll(`input[name="q${i}"]`);
+      radios.forEach(radio => {
+        // Remove previous marks
+        if (radio.nextSibling && radio.nextSibling.className === 'mark') {
+        radio.parentNode.removeChild(radio.nextSibling);
+        }
+        if (radio.checked) {
+        const mark = document.createElement('span');
+        mark.className = 'mark';
+        mark.style.marginLeft = '8px';
+        if (radio.value === "1") {
+          mark.textContent = '✔️';
+          mark.style.color = 'green';
+        } else {
+          mark.textContent = '❌';
+          mark.style.color = 'red';
+        }
+        radio.parentNode.insertBefore(mark, radio.nextSibling);
+        }
+      });
+      }
+
+      // Fill in the blanks
+      const fillAnswers = [
+      ['application'],
+      ['powerpoint', 'canva'],
+      ['calculations', 'maths'],
+      ['word', 'word processor'],
+      ['audio, video', 'video, audio'],
+      ['browser', 'web browser']
+      ];
+      for (let i = 1; i <= 6; i++) {
+      const input = document.getElementById(`fill${i}`);
+      // Remove previous marks
+      if (input.nextSibling && input.nextSibling.className === 'mark') {
+        input.parentNode.removeChild(input.nextSibling);
+      }
+      const mark = document.createElement('span');
+      mark.className = 'mark';
+      mark.style.marginLeft = '8px';
+      const val = input.value.trim().toLowerCase();
+      if (fillAnswers[i - 1].includes(val)) {
+        mark.textContent = '✔️';
+        mark.style.color = 'green';
+      } else {
+        mark.textContent = '❌';
+        mark.style.color = 'red';
+      }
+      input.parentNode.insertBefore(mark, input.nextSibling);
+      }
+
+      // Drag and Drop
+      for (let i = 1; i <= 8; i++) {
+      const select = document.getElementById(`drag${i}`);
+      // Remove previous marks
+      if (select.nextSibling && select.nextSibling.className === 'mark') {
+        select.parentNode.removeChild(select.nextSibling);
+      }
+      const mark = document.createElement('span');
+      mark.className = 'mark';
+      mark.style.marginLeft = '8px';
+      if (select.value === "10") {
+        mark.textContent = '✔️';
+        mark.style.color = 'green';
+      } else {
+        mark.textContent = '❌';
+        mark.style.color = 'red';
+      }
+      select.parentNode.insertBefore(mark, select.nextSibling);
+      }
+    }
+
+    // Add Next button logic
+    function showNextOrRetry(percent) {
+      let nextBtn = document.getElementById('next-button');
+      if (!nextBtn) {
+      nextBtn = document.createElement('button');
+      nextBtn.id = 'next-button';
+      nextBtn.textContent = 'Next';
+      nextBtn.onclick = function() {
+        window.location.href = 'end.html';
+      };
+      document.body.appendChild(nextBtn);
+      }
+      if (percent >= 50) {
+      nextBtn.style.display = 'block';
+      document.getElementById('result').innerText += "\nGreat job! Click Next to continue.";
+      } else {
+      nextBtn.style.display = 'none';
+      document.getElementById('result').innerText += "\nPlease reload the page and try again.";
+      }
+    }
+
+    // Override submitQuiz to add new logic
+    const oldSubmitQuiz = submitQuiz;
+    submitQuiz = function() {
+      oldSubmitQuiz();
+      const resultText = document.getElementById('result').innerText;
+      const match = resultText.match(/(\d+)%/);
+      let percent = 0;
+      if (match) percent = parseInt(match[1]);
+      markAnswers();
+      showNextOrRetry(percent);
+    };
+
+    // Instruction audio autoplay with fallback
+    const instructionAudio = document.getElementById('instruction-audio');
+    const playSoundsBtn = document.getElementById('play-sounds-btn');
+
+    window.addEventListener('DOMContentLoaded', () => {
+      if (instructionAudio) {
+        instructionAudio.play().catch(() => {
+          // Autoplay failed, user must click Play Site Sounds
+        });
+      }
+    });
+
+    if (playSoundsBtn && instructionAudio) {
+      playSoundsBtn.addEventListener('click', () => {
+        instructionAudio.currentTime = 0;
+        instructionAudio.play();
+      });
+    }
+  </script>
+</body>
+</html>
+``` 

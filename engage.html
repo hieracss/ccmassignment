@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz: Match the App</title>
+  <style>
+    /* reset & basic */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: sans-serif;
+      background: #f2f2f2;
+      padding: 20px;
+    }
+    img { display: block; }
+
+    /* Top nav (unchanged) */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .top-nav .left,
+    .top-nav .right {
+      display: flex;
+      gap: 15px;
+    }
+    .top-nav img {
+      cursor: pointer;
+      width: 130px;
+    }
+
+    /* Main two-column layout */
+    .quiz-container {
+      display: flex;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .column {
+      flex: 1;
+      padding: 30px;
+    }
+    .column.left {
+      text-align: center;
+    }
+    .column.left img {
+      width: 200px;
+      margin: 0 auto;
+    }
+    /* vertical divider */
+    .quiz-container::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      bottom: 20px;
+      left: 50%;
+      width: 2px;
+      background: #888;
+      transform: translateX(-50%);
+    }
+
+    /* Right panel grid (unchanged) */
+    .right {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+    .icon-list,
+    .label-list {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    .draggable {
+      width: 60px;
+      cursor: grab;
+    }
+    .drop-zone {
+      width: 200px;
+      min-height: 60px;
+      border: 2px dashed #aaa;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Permanent Marker', sans-serif;
+      font-size: 18px;
+      color: #333;
+      position: relative;
+    }
+    .drop-zone.correct {
+      border-color: #4CAF50;
+      background: #e8f5e9;
+    }
+    .drop-zone.wrong {
+      border-color: #F44336;
+      background: #ffebee;
+    }
+
+    /* Feedback & Next (now inside left column) */
+    .feedback {
+      margin-top: 20px;
+      font-family: 'Permanent Marker', sans-serif;
+      font-size: 22px;
+      color: #333;
+    }
+    #next-button {
+      margin-top: 15px;
+      padding: 8px 18px;
+      font-size: 18px;
+      font-family: 'Permanent Marker', sans-serif;
+      cursor: pointer;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top navigation -->
+  <div class="top-nav">
+    <div class="left">
+      <img src="assets/pay sound.png" id="play-sounds-btn" alt="Play Site Sounds">
+    </div>
+    <div class="right">
+      <img src="assets/resources.png" alt="Resources">
+      <img src="assets/quiz.png" alt="Quiz Zone">
+    </div>
+  </div>
+
+  <!-- Quiz area -->
+  <div class="quiz-container">
+    <!-- LEFT COLUMN -->
+    <div class="column left">
+      <img src="assets/waving robot.gif" alt="Appy the bot" />
+
+      <!-- Moved feedback & Next here -->
+      <div id="apply-message" class="feedback">
+        Hi there! Drag the apps to their functions.
+      </div>
+      <button id="next-button">Next</button>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="column right">
+      <div class="icon-list">
+        <img src="assets/whatsapp.png" id="whatsapp" class="draggable" draggable="true" alt="WhatsApp">
+        <img src="assets/word.png"     id="word"     class="draggable" draggable="true" alt="Word">
+        <img src="assets/paint.png"    id="paint"    class="draggable" draggable="true" alt="Paint">
+        <img src="assets/excel.png"    id="excel"    class="draggable" draggable="true" alt="Excel">
+      </div>
+      <div class="label-list">
+        <div class="drop-zone" data-match="whatsapp">communication</div>
+        <div class="drop-zone" data-match="word">creating text documents</div>
+        <div class="drop-zone" data-match="paint">creating artworks</div>
+        <div class="drop-zone" data-match="excel">creating spreadsheets</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Appy greeting audio -->
+  <audio id="appy-greeting" src="assets/engageappy.m4a"></audio>
+
+  <script>
+    // Elements & sounds
+    const draggables = document.querySelectorAll('.draggable');
+    const dropZones  = document.querySelectorAll('.drop-zone');
+    const applyMsg   = document.getElementById('apply-message');
+    const nextBtn    = document.getElementById('next-button');
+    let draggedId, correct = 0;
+    const sfxCorrect = new Audio('sounds/correct.mp3');
+    const sfxWrong   = new Audio('sounds/wrong.mp3');
+    const appyGreeting = document.getElementById('appy-greeting');
+
+    // Try to autoplay Appy's greeting
+    window.addEventListener('DOMContentLoaded', () => {
+      if (appyGreeting) {
+        appyGreeting.play().catch(() => {
+          // Autoplay failed, user must click Play Site Sounds
+        });
+      }
+    });
+
+    // Play Site Sounds (fallback)
+    document.getElementById('play-sounds-btn')
+      .addEventListener('click', () => {
+        sfxCorrect.play();
+        sfxWrong.play();
+        if (appyGreeting) appyGreeting.play();
+      });
+
+    // drag start
+    draggables.forEach(el => {
+      el.addEventListener('dragstart', e => {
+        draggedId = e.target.id;
+      });
+    });
+
+    // allow drop & handle drop
+    dropZones.forEach(zone => {
+      zone.addEventListener('dragover', e => e.preventDefault());
+      zone.addEventListener('drop', e => {
+        e.preventDefault();
+        const want = zone.dataset.match;
+        const drag = document.getElementById(draggedId);
+        if (!drag) return;
+
+        if (draggedId === want) {
+          zone.classList.add('correct');
+          zone.textContent += ' ✅';
+          correct++;
+          sfxCorrect.play();
+          applyMsg.textContent = 'Great job! 👍';
+          drag.remove();
+        } else {
+          zone.classList.add('wrong');
+          zone.textContent += ' ❌';
+          sfxWrong.play();
+          applyMsg.textContent = 'Oops, try again!';
+          setTimeout(() => {
+            zone.classList.remove('wrong');
+            zone.textContent = zone.textContent.replace(' ❌','');
+          }, 1000);
+        }
+
+        if (correct === 4) {
+          applyMsg.textContent = 'Awesome! You’re done!';
+          nextBtn.style.display = 'inline-block';
+        }
+      });
+    });
+
+    // Next button
+    nextBtn.addEventListener('click', () => {
+      window.location.href = 'explore.html';
+    });
+  </script>
+</body>
+</html>

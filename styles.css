@@ -1,0 +1,181 @@
+body {
+  margin: 0;
+  font-family: 'Gloria Hallelujah', cursive;
+  background-color: #d9d9d9;
+}
+
+.login-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #dcdcdc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  text-align: center;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.login-box h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.login-box input {
+  display: block;
+  width: 250px;
+  padding: 0.8rem;
+  margin: 1rem auto;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.login-box button {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.corner-icon {
+  position: absolute;
+  width: 180px;
+}
+
+.top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.top-right {
+  top: 20px;
+  right: 20px;
+}
+
+.bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+.bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+.teacher-container {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  padding: 40px;
+  background-color: #d9d9d9;
+  height: 100vh;
+}
+
+.teacher {
+  width: 400px;
+  border: 2px solid #5e68b0;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.teacher img {
+  width: 400px;
+  height: auto;
+  
+}
+
+.teacher p {
+  font-size: 16px;
+  margin-top: 10px;
+  font-family: 'Georgia', serif;
+}
+
+.bubble-img {
+  max-width: 90vw;
+  height: auto;
+}
+
+.next-button {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  width: 120px;
+  cursor: pointer;
+}
+
+body {
+  margin: 0;
+  background-color: #d9d9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+}
+
+.bubble-img {
+  max-width: 90vw;
+  height: auto;
+}
+.start-learning {
+  background-color: #fef6e4;
+  font-family: 'Comic Sans MS', sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+.match-section {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.drag-box, .drop-box {
+  width: 45%;
+}
+
+.draggable {
+  background-color: #d2eaf2;
+  padding: 15px;
+  margin: 10px;
+  border: 2px dashed #333;
+  cursor: grab;
+  border-radius: 10px;
+  font-size: 1.2em;
+}
+
+.drop-zone {
+  background-color: #f8e1d4;
+  padding: 15px;
+  margin: 10px;
+  border: 2px solid #888;
+  border-radius: 10px;
+  font-size: 1.2em;
+  min-height: 60px;
+}
+
+.drop-zone.correct {
+  background-color: #c8f7c5;
+}
+
+.drop-zone.wrong {
+  background-color: #f8c8c8;
+}
+
+

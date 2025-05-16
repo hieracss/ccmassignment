@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Application Software Explained</title>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div style="display: flex; flex-direction: column; align-items: center; background-color: #f5f3f7; padding: 20px; font-family: 'Comic Sans MS', cursive, sans-serif;">
+    <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+      <div style=" align-items: right;">
+        <div class="top-nav">
+    <div class="left">
+      <img src="assets/pay sound.png" id="play-sounds-btn" alt="Play Site Sounds">
+    </div>
+    <div class="right">
+      <img src="assets/resources.png" alt="Resources">
+      <img src="assets/quiz.png" alt="Quiz Zone">
+    </div>
+  </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; width: 100%; margin-top: 40px;">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <img src="assets/waving robot.gif" alt="Appy the Robot" style="height: 100px;">
+        <p style="text-align: center; max-width: 200px;">Now that you have an idea of application software, let's learn what they really do!</p>
+        <div>
+          <h2>What is Application Software?</h2>
+          <p>Application software is a type of program that helps you do specific tasks on a computer, like writing, drawing, or playing music.</p>
+          <h3>Let's Try One!</h3>
+          <p>Which app would you use to write a story?</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+            <button class="quiz-option" onclick="checkAnswer(this, true)">Word Processor</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false)">Spreadsheet</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false)">Browser</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false)">Presentation</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false)">Multimedia</button>
+            <button class="quiz-option" onclick="checkAnswer(this, false)">Database</button>
+          </div>
+          <button id="next-button" style="display:none; margin-top: 20px; padding: 10px 20px; font-size: 18px; background-color: #4CAF50; color: white; border: none; border-radius: 10px; cursor: pointer;" onclick="goToNextPage()">Next</button>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Types of Application Software -->
+      <div>
+        <h2 style="margin-bottom: 24px;">Types of Application Software</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+          <div class="flip-card-container" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front flip-card">Presentation</div>
+              <div class="flip-card-back">Used to create slideshows for visual presentations (e.g., PowerPoint).</div>
+            </div>
+          </div>
+          <div class="flip-card-container" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front flip-card">Communication</div>
+              <div class="flip-card-back">Helps users send and receive messages (e.g., email apps, messaging).</div>
+            </div>
+          </div>
+          <div class="flip-card-container" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front flip-card">Word Processing</div>
+              <div class="flip-card-back">Used for creating and editing text documents (e.g., Microsoft Word).</div>
+            </div>
+          </div>
+          <div class="flip-card-container" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front flip-card">Browser</div>
+              <div class="flip-card-back">Used to access and view websites (e.g., Google Chrome, Firefox).</div>
+            </div>
+          </div>
+          <div class="flip-card-container" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front flip-card">Multimedia</div>
+              <div class="flip-card-back">Used to play and edit media like videos and music (e.g., VLC Media Player).</div>
+            </div>
+          </div>
+          <div class="flip-card-container" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front flip-card">Graphics</div>
+              <div class="flip-card-back">Used for creating and editing images (e.g., Photoshop, Paint).</div>
+            </div>
+          </div>
+          <div class="flip-card-container" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front flip-card">Database</div>
+              <div class="flip-card-back">Used for storing and managing data (e.g., Microsoft Access).</div>
+            </div>
+          </div>
+          <div class="flip-card-container" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front flip-card">Spreadsheet</div>
+              <div class="flip-card-back">Used for organizing data and performing calculations (e.g., Excel).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END RIGHT COLUMN -->
+    </div>
+
+    <audio id="appy2">
+      <source src="assets/appy2.m4a" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="correct-sound">
+      <source src="correct.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="wrong-sound">
+      <source src="wrong.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  <audio id="appy2" src="assets/appy2.m4a"></audio>
+  <audio id="main-audio" src="main-message.mp3"></audio>
+
+<style>
+  .flip-card-container {
+    perspective: 800px;
+    width: 320px;           /* Larger width */
+    height: 200px;          /* Larger height */
+    cursor: pointer;
+  }
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  .flip-card-container.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 20px;
+    padding: 32px;
+    box-sizing: border-box;
+    text-align: center;
+    word-break: break-word;
+  }
+  .flip-card-front {
+    background-color: #00849f;
+    color: white;
+  }
+  .flip-card-back {
+    background-color: #f5f3f7;
+    color: #00849f;
+    transform: rotateY(180deg);
+    border: 2px solid #00849f;
+  }
+  .flip-card {
+    background-color: #00849f;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 32px;
+    font-size: 20px;
+    width: 320px;
+    height: 200px;
+    cursor: pointer;
+    text-transform: capitalize;
+    text-align: center;
+    word-break: break-word;
+  }
+   .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .top-nav .left,
+    .top-nav .right {
+      display: flex;
+      gap: 15px;
+    }
+    .top-nav img {
+      cursor: pointer;
+      width: 130px;
+    }
+
+  .quiz-option {
+    background: linear-gradient(to bottom, #5b94a6, #1b6a7e);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    padding: 15px 25px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .quiz-option.correct {
+    background-color: green !important;
+  }
+  .quiz-option.wrong {
+    background-color: red !important;
+  }
+</style>
+
+<audio id="appy-greeting" src="assets/exploreappy.m4a"></audio>
+
+<script>
+  const appyGreeting = document.getElementById('appy-greeting');
+  const playSoundsBtn = document.getElementById('play-sounds-btn');
+
+  // Try to autoplay Appy's greeting on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    if (appyGreeting) {
+      appyGreeting.play().catch(() => {
+        // Autoplay failed, user must click Play Site Sounds button
+      });
+    }
+  });
+
+  // Use the Play Site Sounds image button as fallback
+  if (playSoundsBtn && appyGreeting) {
+    playSoundsBtn.addEventListener('click', () => {
+      appyGreeting.play();
+    });
+  }
+
+  function flipCard(cardContainer) {
+    // Unflip all cards except the clicked one
+    document.querySelectorAll('.flip-card-container').forEach(c => {
+      if (c !== cardContainer) c.classList.remove('flipped');
+    });
+    // Toggle flip on the clicked card
+    cardContainer.classList.toggle('flipped');
+  }
+
+  function checkAnswer(button, isCorrect) {
+    // Remove any previous icons from all buttons
+    document.querySelectorAll('.quiz-option').forEach(btn => {
+      btn.disabled = true;
+      btn.textContent = btn.textContent.replace('✔️', '').replace('❌', '').trim();
+    });
+
+    if (isCorrect) {
+      button.classList.add('correct');
+      button.textContent = button.textContent + ' ✔️';
+      document.getElementById('correct-sound').play();
+      document.getElementById('next-button').style.display = 'block';
+    } else {
+      button.classList.add('wrong');
+      button.textContent = button.textContent + ' ❌';
+      document.getElementById('wrong-sound').play();
+      setTimeout(() => {
+        document.querySelectorAll('.quiz-option').forEach(btn => {
+          btn.disabled = false;
+          btn.classList.remove('wrong');
+          btn.textContent = btn.textContent.replace('❌', '').trim();
+        });
+      }, 1500);
+    }
+  }
+
+  function goToNextPage() {
+    window.location.href = "explain.html";
+  }
+</script>
+</body>
+</html>

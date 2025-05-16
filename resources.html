@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grade 7 Application Software Resources</title>
+    <style>
+    body {
+      margin: 0;
+      background-color: #f5f3f7;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .quiz-option {
+      background: linear-gradient(to bottom, #5b94a6, #1b6a7e);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    .quiz-option.correct {
+      background-color: green !important;
+    }
+
+    .quiz-option.wrong {
+      background-color: red !important;
+    }
+
+    textarea {
+      width: 100%;
+      height: 80px;
+      border-radius: 10px;
+      padding: 10px;
+    }
+ .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .top-nav .left,
+    .top-nav .right {
+      display: flex;
+      gap: 15px;
+    }
+    .top-nav img {
+      cursor: pointer;
+      width: 130px;
+    }
+.quiz-container {
+      display: flex;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .column {
+      flex: 1;
+      padding: 30px;
+    }
+    .column.left {
+      text-align: left;
+    }
+    .column.left img {
+      width: 200px;
+      margin: 0 auto;
+    }
+    #next-button {
+      display: none;
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    h2, h3 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+    <div class="top-nav">
+    <div class="left">
+      <img src="assets/pay sound.png" id="play-sounds-btn" alt="Play Site Sounds">
+    </div>
+    <div class="right">
+    <img src="assets/start.png" alt="Start Learning" onclick="location.href='engage.html'" />
+      <a href="resources.html">
+      <img src="assets/resources.png" alt="Resources">
+      </a>
+      <a href="evaluate.html">
+      <img src="assets/quiz.png" alt="Quiz Zone">
+      </a>
+    </div>
+  </div>
+    <div class="container">
+        <div class="quiz-container">
+            <div class="column right">
+                <h2>Downloadable Resources</h2>
+                <ul>
+                    <li>
+                        <a href="worksheets/application_software_worksheet.docx" download>
+                            Application Software Worksheet (Word)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="handouts/application_software_handout.pdf" target="_blank">
+                            Application Software Handout (PDF)
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="quiz-container">
+            <div class="column left">
+                <h2>Useful Websites</h2>
+                <ul>
+                    <li>
+                        <a href="https://www.bbc.co.uk/bitesize/topics/zf2f9j6/articles/z3c6tfr" target="_blank">
+                            BBC Bitesize: Application Software
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.gcflearnfree.org/computerbasics/understanding-applications/1/" target="_blank">
+                            GCFLearnFree: Understanding Applications
+                        </a>
+                    </li>
+                </ul>
+            </div>
+</body>
+</html>
