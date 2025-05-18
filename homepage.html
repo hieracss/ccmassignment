@@ -83,47 +83,49 @@
 
   <script>
     window.addEventListener('DOMContentLoaded', () => {
-    const audio1 = document.getElementById('appy1');
-    const audio2 = document.getElementById('main-audio');
+      const audio1 = document.getElementById('appy1');
+      const audio2 = document.getElementById('main-audio');
 
-    // Try autoplay for audio1
-    appy1.play().then(() => {
-      appy1.addEventListener('ended', () => {
-        // Play audio2 when audio1 ends
-        main-audio.play().catch((err) => {
-          console.error("Audio2 failed to play:", err);
-        });
-      });
-    }).catch(() => {
-      // Autoplay failed – fallback button
-      const button = document.createElement('button');
-      button.textContent = "Play Audio";
-      button.style.position = "absolute";
-      button.style.top = "20px";
-      button.style.left = "20px";
-      button.style.padding = "10px 20px";
-        button.style.fontSize = "16px";
-        button.style.borderRadius = "8px";
-      button.style.border = "none";
-      button.style.backgroundColor = "#4caf50";
-      button.style.color = "white";
-      button.style.cursor = "pointer";
-      button.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.2)";
-
-      button.onclick = () => {
-        appy1.play();
-        button.remove();
-
-        appy1.addEventListener('ended', () => {
+      // Try autoplay for audio1
+      audio1.play().then(() => {
+        audio1.addEventListener('ended', () => {
+          audio2.currentTime = 0;
           audio2.play().catch((err) => {
-            console.error("Audio2 failed to play after button:", err);
+            console.error("Audio2 failed to play:", err);
           });
         });
-      };
+      }).catch(() => {
+        // Autoplay failed – fallback button
+        const button = document.createElement('button');
+        button.textContent = "Play Audio";
+        button.style.position = "absolute";
+        button.style.top = "20px";
+        button.style.left = "20px";
+        button.style.padding = "10px 20px";
+        button.style.fontSize = "16px";
+        button.style.borderRadius = "8px";
+        button.style.border = "none";
+        button.style.backgroundColor = "#4caf50";
+        button.style.color = "white";
+        button.style.cursor = "pointer";
+        button.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.2)";
 
-      document.body.appendChild(button);
+        button.onclick = () => {
+          audio1.currentTime = 0;
+          audio1.play();
+          button.remove();
+
+          audio1.addEventListener('ended', () => {
+            audio2.currentTime = 0;
+            audio2.play().catch((err) => {
+              console.error("Audio2 failed to play after button:", err);
+            });
+          }, { once: true });
+        };
+
+        document.body.appendChild(button);
+      });
     });
-  });
   </script>
 </body>
 </html>
